@@ -1,75 +1,43 @@
-# React + TypeScript + Vite
+# Baby Weight Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple, free web app for tracking a baby's weight and comparing it against WHO growth percentile curves.
 
-Currently, two official plugins are available:
+I built this because I wanted a simple, free way to follow my little one’s growth, since many apps put percentile charts behind a subscription. This project keeps the core feature simple, free and private: all data stays in your browser.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+> **Disclaimer:** This app is for personal tracking only and is not medical advice. Please talk to your child's pediatrician about any concerns about growth.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## MVP Features
 
-## Expanding the ESLint configuration
+- **Child details:** enter birth date and sex so the app picks the right WHO curves
+- **Add measurements:** record date and weight (kg) with basic validation
+- **Growth chart:** your child's measurements plotted over the WHO weight-for-age percentile curves (3rd, 15th, 50th, 85th, 97th)
+- **Latest summary:** most recent weight, estimated percentile and change since the last entry
+- **History table:** all entries with age at measurement and percentile, with the option to delete an entry
+- **Saved in your browser:** data persists after refresh using `localStorage`, with no account or backend needed
+- **Responsive layout:** works on desktop and mobile
+  
+## Data Source
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Percentile curves are based on the [WHO Child Growth Standards](https://www.who.int/tools/child-growth-standards) weight-for-age tables.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Future Enhancements
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+**Features**
+- Edit existing entries
+- Support for multiple children
+- Pounds / ounces unit option
+- Height and head circumference charts
+- Import / backup so data isn't lost if browser storage is cleared
+- Installable as a PWA with offline support
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+**Code quality**
+- Unit and component tests (Jest + React Testing Library)
+- CI with GitHub Actions (lint, test, build)
 
-```
-
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+**Possible later**
+- Add back-end
+- Optional account and cloud sync
+- Export data (CSV) and print-friendly view
+- Dark mode
