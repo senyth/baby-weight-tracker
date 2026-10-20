@@ -1,8 +1,7 @@
-import type { ISODate } from "./ISODate";
+// import type { ISODate } from "./ISODate";
 
 export interface Weight {
     id: string;
-    childId: string;
-    date: ISODate;
-    weight: number;
+    date: string; // ISO "YYYY-MM-DD"
+    weightKg: number;
 }

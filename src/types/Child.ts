@@ -4,6 +4,6 @@ import type { ISODate } from "./ISODate";
 export interface Child {
     id: string;
     name: string;
-    date: ISODate;     
+    dateOfBirth: ISODate;     
     gender: Gender;
 }

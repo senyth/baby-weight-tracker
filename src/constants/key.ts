@@ -1,0 +1,1 @@
+export const KEY = "weight-tracker:v1";

@@ -4,8 +4,9 @@ import {
 } from "recharts";
 import type Percentile from "../types/Percentile";
 import { PERCENTILES } from "../constants/percentiles";
-import Toggle from "./Toggle";
+import Toggle from "../shared/components/Toggle";
 import { useState } from "react";
+import { formatDate } from "../lib/formatDate";
 
 export default function WeightChart({ data }: { data: Percentile[] }) {
   const [showAll, setShowAll] = useState(false);
@@ -21,14 +22,20 @@ export default function WeightChart({ data }: { data: Percentile[] }) {
         <LineChart data={data} margin={{ top: 8, right: 16, bottom: 8, left: 0 }}>
           <CartesianGrid strokeDasharray="1 1" stroke="#94a3b8" />
           <XAxis ticks={[0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24]} dataKey="ageMonths" type="number" domain={[0, 16]} unit="mo" />
-          <YAxis unit="kg" ticks={[0, 2, 4, 6, 8, 10, 12, 14, 16]} />
+          <YAxis unit=" kg" ticks={[0, 2, 4, 6, 8, 10, 12, 14, 16]} />
+          
           <Tooltip
-            labelFormatter={(value) => `${Math.round(Number(value) * 10) / 10} months`}
+            labelFormatter={(value, payload) => {
+              const months = Math.round(Number(value) * 10) / 10;
+              const date = payload?.[0]?.payload?.date as string | undefined;
+              return date ? `${months} months (${formatDate(date)})` : `${months} months`;
+            }}
             itemSorter={(item) =>
               item.name === "Weight" ? -1 : parseInt(String(item.name), 10)
             }
-            formatter={(value, name) => [`${value} kg`, name]}
+            formatter={(value, name) => [`${Number(value).toFixed(2)} kg`, name]}
           />
+          
           <Legend
             itemSorter={(item) => LEGEND_ORDER.indexOf(String(item.dataKey))}
           />
