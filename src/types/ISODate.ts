@@ -1,0 +1,1 @@
+export type ISODate = `${number}-${number}-${number}`; // ISO "2026-10-16"

@@ -1,8 +1,9 @@
-export type Gender = "M" | "F";
+import type { Gender } from "./Gender";
+import type { ISODate } from "./ISODate";
 
 export interface Child {
     id: string;
     name: string;
-    birthday: Date;
+    date: ISODate;     
     gender: Gender;
 }
